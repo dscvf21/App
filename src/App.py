@@ -13,7 +13,7 @@ from plotly.subplots import make_subplots
 # %%
 df = []
 for i in range(1,5):
-    frame = pd.read_excel('C:/Users/PC/OneDrive/Máy tính/Python/App/src/Thống kê Margin.xlsx',sheet_name = f"{i}")
+    frame = pd.read_excel('./src/Thống kê Margin.xlsx',sheet_name = f"{i}")
     df.append(frame)
 
 # %%
@@ -23,7 +23,7 @@ ctck =ctck.drop(columns=ctck.columns[1:4])
 melted = ctck.melt(id_vars = 'Tỷ lệ cho vay(%)',var_name = 'CTCK',value_name = 'Số mã')
 
 # %%
-p_v = pd.read_excel('C:/Users/PC/OneDrive/Máy tính/Python/App/src/Price and Volume.xlsx')
+p_v = pd.read_excel('./src/Price and Volume.xlsx')
 
 # %%
 def my_table(i,df,page_size=0,page_action='none',id='',active_cell=None):
