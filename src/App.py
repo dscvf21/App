@@ -123,7 +123,7 @@ def get_figure(active_cell,start_date,end_date):
       
 
 if __name__ == '__main__':
-    app.run(debug=False)
+    app.run_server(debug=True)
 
 # %%
 
