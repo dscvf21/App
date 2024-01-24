@@ -27,6 +27,7 @@ p_v = pd.read_excel('Price and Volume.xlsx')
 
 # %%
 def my_table(i,df,page_size=0,page_action='none',id='',active_cell=None):
+    df[i]=df[i].reset_index()
     df[i]['id']=df[i].index
     table=DataTable(id=id,
                     columns=[{'name':x,'id':x} for x in df[i].columns if x!='id'],
@@ -97,7 +98,7 @@ def get_figure(active_cell,start_date,end_date):
                         fig.add_trace(go.Scatter(x=price_volume['TRADE_DATE'], y=price_volume['CLOSE_PRICE'], name="Giá(VND)",mode='lines'),secondary_y=False)
                         fig.add_trace(go.Bar(x=price_volume['TRADE_DATE'], y=price_volume['TOTAL_VOLUME'], name="Khối lượng(CP)"),secondary_y=True)
                         # Add figure title
-                        fig.update_layout(title_text="DỮ LIỆU GIÁ VÀ KHỐI LƯỢNG")
+                        fig.update_layout(title_text=f"DỮ LIỆU GIÁ VÀ KHỐI LƯỢNG {ticker}")
                         # Set x-axis title
                         fig.update_xaxes(title_text="Ngày giao dịch(Date)")
                         # Set y-axes titles
@@ -113,7 +114,7 @@ def get_figure(active_cell,start_date,end_date):
                         fig.add_trace(go.Scatter(x=price_volume['TRADE_DATE'], y=price_volume['CLOSE_PRICE'], name="Giá(VND)",mode='lines'),secondary_y=False)
                         fig.add_trace(go.Bar(x=price_volume['TRADE_DATE'], y=price_volume['TOTAL_VOLUME'], name="Khối lượng(CP)"),secondary_y=True)
                         # Add figure title
-                        fig.update_layout(title_text="DỮ LIỆU GIÁ VÀ KHỐI LƯỢNG")
+                        fig.update_layout(title_text=f"DỮ LIỆU GIÁ VÀ KHỐI LƯỢNG {ticker}")
                         # Set x-axis title
                         fig.update_xaxes(title_text="Ngày giao dịch(Date)")
                         # Set y-axes titles
