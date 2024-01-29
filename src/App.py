@@ -39,7 +39,8 @@ def my_table(i,df,page_size=0,page_action='none',id='',active_cell=None,style_da
                     fill_width=False,
                     page_action=page_action,
                     page_size=page_size,
-                    style_table={'overflowX': 'auto'}
+                    style_table={'overflowX': 'auto'},
+                    style_data_conditional=style_data_conditional
                     )
     return table
 
