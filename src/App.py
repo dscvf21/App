@@ -51,7 +51,9 @@ app.layout=html.Div(children=[
                         html.Div(
                         children=[
                                 html.H1('DANH MỤC MARGIN QUÝ 3 - 2023',style={'color':'magneta','textAlign':'center'}),
-                                my_table(i=3,df=df,10,
+                                my_table(i=3,
+                                         df=df,
+                                         page_size=10,
                                          page_action='native',
                                          id='table_1',
                                          active_cell={'row':0,'column':0,'column_id':'Mã CK','row_id':0},
