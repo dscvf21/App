@@ -26,7 +26,7 @@ melted = ctck.melt(id_vars = 'Tỷ lệ cho vay(%)',var_name = 'CTCK',value_name
 p_v = pd.read_excel('Price and Volume.xlsx')
 
 # %%
-def my_table(i,df,page_size=0,page_action='none',id='',active_cell=None):
+def my_table(i,df,page_size=0,page_action='none',id='',active_cell=None,style_data_conditional=None):
     df[i]=df[i].reset_index()
     df[i]=df[i].rename({'index':'STT'},axis=1)
     df[i]['id']=df[i].index
@@ -50,7 +50,64 @@ app.layout=html.Div(children=[
                         html.Div(
                         children=[
                                 html.H1('DANH MỤC MARGIN QUÝ 3 - 2023',style={'color':'magneta','textAlign':'center'}),
-                                my_table(3,df,10,'native','table_1',{'row':0,'column':0,'column_id':'Mã CK','row_id':0}),
+                                my_table(i=3,df=df,10,
+                                         page_action='native',
+                                         id='table_1',
+                                         active_cell={'row':0,'column':0,'column_id':'Mã CK','row_id':0},
+                                         style_data_conditional=[
+                                                {
+                                                       'if':{
+                                                              'filter_query':'{TỶ LỆ CHO VAY MARGIN MỚI}>{TỶ LỆ CHO VAY MARGIN ĐANG ÁP DỤNG}',
+                                                              'column_id':'TỶ LỆ CHO VAY MARGIN MỚI'
+                                                       },
+                                                       'background-color':'green',
+                                                        'color':'tomato',
+                                                        'fontWeight': 'bold'
+                                                },
+                                                {
+                                                       'if':{
+                                                              'filter_query':'{TỶ LỆ CHO VAY MARGIN MỚI}<{TỶ LỆ CHO VAY MARGIN ĐANG ÁP DỤNG}',
+                                                              'column_id':'TỶ LỆ CHO VAY MARGIN MỚI'
+                                                       },
+                                                       'background-color':'red',
+                                                        'fontWeight': 'bold'                                                       
+                                                },
+                                                {
+                                                        'if':{
+                                                              'filter_query':'{Giá chặn mới}>{Giá chặn đang áp dụng}',
+                                                              'column_id':'Giá chặn mới'
+                                                       },
+                                                       'background-color':'green',
+                                                        'color':'tomato',
+                                                        'fontWeight': 'bold'
+                                                },
+                                                {
+                                                        'if':{
+                                                              'filter_query':'{Giá chặn mới}<{Giá chặn đang áp dụng}',
+                                                              'column_id':'Giá chặn mới'
+                                                       },
+                                                       'background-color':'red',
+                                                        'fontWeight': 'bold'
+                                                },
+                                                {
+                                                        'if':{
+                                                              'filter_query':'{Room mới}>{Room đang áp dụng}',
+                                                              'column_id':'Room mới'
+                                                       },
+                                                       'background-color':'green',
+                                                        'color':'tomato',
+                                                        'fontWeight': 'bold'
+                                                },                                                       
+                                                {
+                                                        'if':{
+                                                              'filter_query':'{Room mới}<{Room đang áp dụng}',
+                                                              'column_id':'Room mới'
+                                                       },
+                                                       'background-color':'red',                                        
+                                                        'fontWeight': 'bold'                                                       
+                                                }                                                       
+                                                
+                                         ]),
                                 html.Div(children=
                                         [dcc.DatePickerRange(id='input_date'),
                                         dcc.Graph(id='graph_1')])
