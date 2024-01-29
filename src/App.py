@@ -29,6 +29,7 @@ p_v = pd.read_excel('Price and Volume.xlsx')
 def my_table(i,df,page_size=0,page_action='none',id='',active_cell=None,style_data_conditional=None):
     if i==3:
         df[i]=df[i].reset_index()
+        df[i]=df[i].rename(columns={'index':'STT'})
     df[i]['id']=df[i].index
     table=DataTable(id=id,
                     columns=[{'name':x,'id':x} for x in df[i].columns if x!='id'],
