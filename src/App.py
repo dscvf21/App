@@ -106,8 +106,7 @@ app.layout=html.Div(children=[
                                                        },
                                                        'background-color':'red',                                        
                                                         'fontWeight': 'bold'                                                       
-                                                }                                                       
-                                                
+                                                }                                                                                                       
                                          ]),
                                 html.Div(children=
                                         [dcc.DatePickerRange(id='input_date'),
